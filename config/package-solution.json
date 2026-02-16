@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "announcement-dashboard-client-side-solution",
+    "id": "86845dc8-fb7a-40fc-8537-4aa0737ca1e2",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.22.1"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "announcement-dashboard description"
+      },
+      "longDescription": {
+        "default": "announcement-dashboard description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "announcement-dashboard Feature",
+        "description": "The feature that activates elements of the announcement-dashboard solution.",
+        "id": "f9e7c9a9-b784-4b32-9c29-13e485daa096",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/announcement-dashboard.sppkg"
+  }
+}
