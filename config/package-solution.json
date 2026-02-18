@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "task-3-announcementwebpart-client-side-solution",
+    "id": "9fd4c22f-f68f-49ce-adc9-8d559a3f1db5",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.22.1"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "task-3-announcementwebpart description"
+      },
+      "longDescription": {
+        "default": "task-3-announcementwebpart description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "task-3-announcementwebpart Feature",
+        "description": "The feature that activates elements of the task-3-announcementwebpart solution.",
+        "id": "e5d74b07-3d78-4ecd-abf6-cb68612e282e",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/task-3-announcementwebpart.sppkg"
+  }
+}

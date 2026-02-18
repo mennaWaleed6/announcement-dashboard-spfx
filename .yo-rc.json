@@ -1,0 +1,19 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "useGulp": false,
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "22.20.0",
+    "sdksVersions": {},
+    "version": "1.22.1",
+    "libraryName": "task-3-announcementwebpart",
+    "libraryId": "9fd4c22f-f68f-49ce-adc9-8d559a3f1db5",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "task-3-announcementwebpart",
+    "solutionShortDescription": "task-3-announcementwebpart description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

@@ -1,0 +1,58 @@
+export type Lang = "EN" | "AR";
+
+export const UI = {
+  EN: {
+    HeaderTitle: "Title",
+    HeaderDescription: "Description",
+    HeaderCategory: "Category",
+    HeaderPriority: "Priority",
+    HeaderDueDate: "Due Date",
+    HeaderAssignedTo: "Assigned To",
+
+    FilterLabel: "Filter:",
+    Page: "Page",
+    of: "of",
+    SortBy: "Sort by",
+
+    WebPartTitle: "Web Part Title",
+    IsFiltering: "Enable Filtering",
+    FilteringEnabled: "Filtering enabled",
+    FilteringDisabled: "Filtering disabled",
+    ItemsLabel: "Number of items to show",
+    LayoutLabel: "Select Layout style",
+    Card: "Card",
+    Compact: "Compact",
+    Table: "Table",
+    ListnameLabel: "Select the Announcement List",
+    LanguageLabel: "Select Language",
+    ColorLabel: "Select Header Background Color",
+    Loading: "Loading ..",
+  },
+  AR: {
+    HeaderTitle: "العنوان",
+    HeaderDescription: "الوصف",
+    HeaderCategory: "الفئة",
+    HeaderPriority: "الأولوية",
+    HeaderDueDate: "تاريخ الاستحقاق",
+    HeaderAssignedTo: "مُسنَد إلى",
+
+    FilterLabel: "بحث:",
+    Page: "الصفحة",
+    of: "من",
+    SortBy: "ترتيب حسب",
+
+    WebPartTitle: "عنوان جزء الويب",
+    IsFiltering: "تفعيل التصفية",
+    FilteringEnabled: "تم تفعيل التصفية",
+    FilteringDisabled: "تم تعطيل التصفية",
+    ItemsLabel: "عدد العناصر للعرض",
+    LayoutLabel: "اختر نمط العرض",
+    Card: "بطاقة",
+    Compact: "مضغوط",
+    Table: "جدول",
+    ListnameLabel: "اختر قائمة الإعلانات",
+    LanguageLabel: "اختر اللغة",
+    ColorLabel: "اختر لون خلفية العنوان",
+    Loading: "جاري التحميل ..",
+  },
+} as const;

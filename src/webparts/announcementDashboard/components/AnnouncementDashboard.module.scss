@@ -1,0 +1,251 @@
+@import "~@fluentui/react/dist/sass/References.scss";
+
+.announcementDashboard {
+  overflow: hidden;
+  padding: 1em;
+  color: "[theme:bodyText, default: #323130]";
+  color: var(--bodyText);
+  &.teams {
+    font-family: $ms-font-family-fallbacks;
+  }
+}
+
+.welcome {
+  text-align: center;
+}
+
+.welcomeImage {
+  width: 100%;
+  max-width: 420px;
+}
+
+.links {
+  a {
+    text-decoration: none;
+    color: "[theme:link, default:#03787c]";
+    color: var(
+      --link
+    ); // note: CSS Custom Properties support is limited to modern browsers only
+
+    &:hover {
+      text-decoration: underline;
+      color: "[theme:linkHovered, default: #014446]";
+      color: var(
+        --linkHovered
+      ); // note: CSS Custom Properties support is limited to modern browsers only
+    }
+  }
+}
+
+.label {
+  font-weight: $ms-font-weight-semibold;
+  font-size: $ms-font-size-m;
+  height: 32px;
+  line-height: 32px;
+  margin: 0 4px;
+  vertical-align: top;
+  display: inline-block;
+}
+
+.row {
+  @include ms-Grid-row;
+  background-color: aqua;
+  padding: 20px;
+  @include ms-fontColor-blue;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  table-layout: fixed;
+}
+
+.th,
+.td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal; /* allow wrapping */
+  word-break: break-word; /* prevent overlap */
+}
+.tr {
+  height: auto;
+}
+.detailsList,
+.detailsListCompact {
+  :global(.ms-DetailsHeader) {
+    background-color: var(--adHeaderBg) !important;
+    padding-top: 0px;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.controlStyles {
+  margin-bottom: 20px;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  border: 1px solid #e1e1e1;
+  border-radius: 12px;
+  padding: 12px;
+  background: #fff;
+  outline: none;
+}
+
+.card:focus {
+  box-shadow: 0 0 0 2px #999;
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 10px;
+  background: var(--adHeaderBg);
+  color: #fff;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  background: rgba(255, 255, 255, 0.18);
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.cardDescription {
+  margin: 10px 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cardFooter {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: #333;
+}
+
+.metaItem strong {
+  font-weight: 600;
+}
+
+.pager {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.pagerText {
+  font-weight: 600;
+}
+
+// Card Sort Controls
+.cardSortControls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 12px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  flex-wrap: wrap;
+}
+
+.sortLabel {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+.sortButton {
+  padding: 8px 12px;
+  border: 1px solid #c8c8c8;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: #f0f0f0;
+    border-color: #999;
+  }
+
+  &.active {
+    background: var(--adHeaderBg);
+    color: #fff;
+    border-color: var(--adHeaderBg);
+    font-weight: 600;
+  }
+
+  &:focus {
+    outline: 2px solid #0078d4;
+    outline-offset: 2px;
+  }
+}
+
+.sortArrow {
+  margin-left: 4px;
+  font-size: 12px;
+}
+
+.rtl {
+  // enforce RTL direction inside DetailsList (header + rows)
+  :global(.ms-DetailsList) {
+    direction: rtl;
+  }
+  // body row cells
+  :global(.ms-DetailsRow-cell) {
+    display: flex;
+    align-items: center; // vertical middle
+    justify-content: flex-start; // horizontal center
+    text-align: right;
+    min-height: 44px; // helps "middle" feel consistent
+    white-space: normal; // allow wrapping
+    word-break: break-word;
+  }
+}
+
+.ltr {
+  :global(.ms-DetailsList) {
+    direction: ltr;
+  }
+}
+.spPropertyPaneContainer
+  [data-automation-id="propertyPaneGroupField"]:has(
+    input[role="switch"][aria-label="تفعيل التصفية"]
+  )
+  .fui-Switch {
+  display: flex !important;
+  flex-direction: row-reverse !important; /* make it RTL */
+  justify-content: flex-start !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
