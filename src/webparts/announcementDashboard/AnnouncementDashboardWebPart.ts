@@ -15,6 +15,7 @@ import {
 } from "@pnp/spfx-property-controls/lib/propertyFields/colorPicker";
 import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
 import { IReadonlyTheme } from "@microsoft/sp-component-base";
+import { SPHttpClient } from "@microsoft/sp-http";
 
 import * as strings from "AnnouncementDashboardWebPartStrings";
 import AnnouncementDashboard from "./components/AnnouncementDashboard";
@@ -32,6 +33,7 @@ export interface IAnnouncementDashboardWebPartProps {
   ListName: string;
   Language: string;
   color: string;
+  sphttpclient: SPHttpClient;
 }
 
 export default class AnnouncementDashboardWebPart extends BaseClientSideWebPart<IAnnouncementDashboardWebPartProps> {
@@ -45,6 +47,8 @@ export default class AnnouncementDashboardWebPart extends BaseClientSideWebPart<
   public render(): void {
     const element: React.ReactElement<IAnnouncementDashboardProps> =
       React.createElement(AnnouncementDashboard, {
+        sphttpclient: this.context.spHttpClient,
+        siteUrl: this.context.pageContext.web.absoluteUrl,
         IsFiltering: this.properties.IsFiltering,
         title: this.properties.title,
         description: this.properties.description,

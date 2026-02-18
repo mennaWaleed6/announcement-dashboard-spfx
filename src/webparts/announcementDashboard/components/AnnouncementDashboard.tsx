@@ -2,12 +2,10 @@ import * as React from "react";
 import styles from "./AnnouncementDashboard.module.scss";
 import type { IAnnouncementDashboardProps } from "./IAnnouncementDashboardProps";
 
-import $ from "jquery";
-
 import moment from "moment";
 import { IAnnouncement } from "./IAnnouncement";
 import { IAnnouncementDashboardState } from "./IAnnouncementDashboardState";
-
+import { SPHttpClient, SPHttpClientResponse } from "@microsoft/sp-http";
 import { IColumn } from "@fluentui/react/lib/DetailsList";
 import {
   TextField,
@@ -184,8 +182,8 @@ export default class AnnouncementDashboard extends React.Component<
     });
   };
 
-  public componentDidMount() {
-    this.fetchAnnouncements();
+  public componentDidMount(): void {
+    void this.fetchAnnouncements();
   }
   private _onChangeText = (
     _ev: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -395,54 +393,56 @@ export default class AnnouncementDashboard extends React.Component<
       prevProps.ListName !== this.props.ListName ||
       prevProps.Layout !== this.props.Layout
     ) {
-      this.fetchAnnouncements();
+      void this.fetchAnnouncements();
     }
   }
-  private fetchAnnouncements(): void {
-    const apiUrl = `${AnnouncementDashboard.siteUrl}/sites/DevelopmentDemos/_api/web/lists/getbytitle('${this.props.ListName}')/items?$select=*,category/Title,category/name_en,category/name_ar,AssignedTo/Title,AssignedTo/EMail&$expand=category,AssignedTo`;
+  private fetchAnnouncements = async (): Promise<void> => {
+    try {
+      const apiUrl = `${AnnouncementDashboard.siteUrl}/sites/DevelopmentDemos/_api/web/lists/getbytitle('${this.props.ListName}')/items?$select=*,category/Title,category/name_en,category/name_ar,AssignedTo/Title,AssignedTo/EMail&$expand=category,AssignedTo`;
 
-    $.ajax({
-      url: apiUrl,
-      type: "GET",
-      headers: {
-        Accept: "application/json;odata=verbose",
-      },
-      success: (resultData: any) => {
-        console.log("AJAX success - data received:", resultData);
-        let allAnnouncements: Array<IAnnouncement> = new Array<IAnnouncement>();
-        resultData.d.results.map((item: any) => {
-          allAnnouncements.push({
-            Title_ar: item.Title_ar,
-            Title_en: item.Title_en,
-            Description_ar: item.Description_ar,
-            Description_en: item.Description_en,
-            category_en: item.category?.name_en || "Uncategorized",
-            category_ar: item.category?.name_ar || "Uncategorized",
-            Priority: item.Priority,
-            DueDate: formatDate(item.DueDate),
-            AssignedTo: item.AssignedTo?.Title || "Unassigned",
-          });
-        });
-        console.log("Announcements processed:", allAnnouncements);
-        const isAr = this.props.Language === "AR";
-        const t = isAr ? UI.AR : UI.EN;
-        this.setState({
-          allAnnouncements,
-          announcements: allAnnouncements,
-          columns: getAnnouncementColumns(isAr, t, this._onColumnClick),
-          currentPage: 1,
-        });
-      },
-      error: (jqXHR: any, textStatus: string, errorThrown: string) => {
-        console.error("AJAX ERROR");
-        console.error("URL attempted:", apiUrl);
-        console.error("Status:", textStatus);
-        console.error("Error thrown:", errorThrown);
-        console.error("HTTP Status Code:", jqXHR.status);
-        console.error("Response text:", jqXHR.responseText);
-      },
-    });
-  }
+      const res: SPHttpClientResponse = await this.props.sphttpclient.get(
+        apiUrl,
+        SPHttpClient.configurations.v1,
+        {
+          headers: {
+            Accept: "application/json;odata=nometadata",
+            "OData-Version": "",
+          },
+        },
+      );
+      if (!res.ok) {
+        const text = await res.text();
+        console.error(`SharePoint REST error ${res.status}: ${text}`);
+      }
+      const json = (await res.json()) as { value: any[] };
+
+      const allAnnouncements: IAnnouncement[] = json.value.map((item) => ({
+        Title_ar: item.Title_ar,
+        Title_en: item.Title_en,
+        Description_ar: item.Description_ar,
+        Description_en: item.Description_en,
+        category_en: item.category?.name_en || "Uncategorized",
+        category_ar: item.category?.name_ar || "Uncategorized",
+        Priority: item.Priority,
+        DueDate: formatDate(item.DueDate),
+        AssignedTo: item.AssignedTo?.Title || "Unassigned",
+      }));
+
+      console.log("Announcements processed:", allAnnouncements);
+      const isAr = this.props.Language === "AR";
+      const t = isAr ? UI.AR : UI.EN;
+      this.setState({
+        allAnnouncements,
+        announcements: allAnnouncements,
+        columns: getAnnouncementColumns(isAr, t, this._onColumnClick),
+        currentPage: 1,
+      });
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      this.setState({ isLoading: false, error: msg });
+      console.error("fetchAnnouncements failed:", e);
+    }
+  };
 
   public updateState() {
     this.setState({});

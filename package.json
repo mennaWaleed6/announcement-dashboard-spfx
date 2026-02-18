@@ -20,6 +20,7 @@
     "@microsoft/sp-property-pane": "1.22.1",
     "@microsoft/sp-webpart-base": "1.22.1",
     "@pnp/spfx-property-controls": "^3.22.0",
+    "gulp": "^5.0.1",
     "jQuery": "^1.7.4",
     "moment": "^2.30.1",
     "react": "17.0.1",

@@ -2,6 +2,8 @@ import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { SPHttpClient } from "@microsoft/sp-http";
 
 export interface IAnnouncementDashboardProps {
+  sphttpclient: SPHttpClient;
+  siteUrl: string;
   title: string;
   description: string;
   IsFiltering: boolean;
