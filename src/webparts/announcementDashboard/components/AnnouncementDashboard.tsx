@@ -260,7 +260,7 @@ export default class AnnouncementDashboard extends React.Component<
             : this.state.columns
         }
         setKey="set"
-        layoutMode={DetailsListLayoutMode.fixedColumns}
+        layoutMode={DetailsListLayoutMode.justified}
         selectionMode={SelectionMode.single}
         checkboxVisibility={CheckboxVisibility.hidden}
         compact={compact}
@@ -398,7 +398,8 @@ export default class AnnouncementDashboard extends React.Component<
   }
   private fetchAnnouncements = async (): Promise<void> => {
     try {
-      const apiUrl = `${AnnouncementDashboard.siteUrl}/sites/DevelopmentDemos/_api/web/lists/getbytitle('${this.props.ListName}')/items?$select=*,category/Title,category/name_en,category/name_ar,AssignedTo/Title,AssignedTo/EMail&$expand=category,AssignedTo`;
+      //const apiUrl = `${AnnouncementDashboard.siteUrl}/sites/DevelopmentDemos/_api/web/lists/getbytitle('${this.props.ListName}')/items?$select=*,category/Title,category/name_en,category/name_ar,AssignedTo/Title,AssignedTo/EMail&$expand=category,AssignedTo`;
+      const apiUrl = `${AnnouncementDashboard.siteUrl}/_api/web/lists/getbytitle('${this.props.ListName}')/items?$select=*,category/Title,category/name_en,category/name_ar,AssignedTo/Title,AssignedTo/EMail&$expand=category,AssignedTo`;
 
       const res: SPHttpClientResponse = await this.props.sphttpclient.get(
         apiUrl,
